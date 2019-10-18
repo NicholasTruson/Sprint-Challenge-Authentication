@@ -14,7 +14,7 @@ router.post('/register', (req, res) => {
             res.status(201).json(addedUser);
         })
         .catch(err => {
-            res.status(500).json({message: "Error registering. Try again."});
+            res.status(500).json({message: "Error registering."});
         })
 });
 
@@ -26,13 +26,13 @@ router.post('/login', (req, res) => {
         .then(user => {
             if (user && bcrypt.compareSync(password, user.password)) {
                 const token = getToken(user);
-                res.status(200).json({message: `Logged in.`, token});
+                res.status(200).json({message: `Logged In.`, token});
             } else {
                 res.status(401).json({ message: 'Invalid Credentials' });
             };
         }).catch(err => {
             console.log(err)
-            res.status(500).json({ message: 'Error logging in. Try again.'});
+            res.status(500).json({ message: 'Error logging in.'});
         })
 });
 
